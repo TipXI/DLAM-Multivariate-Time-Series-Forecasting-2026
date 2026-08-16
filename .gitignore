@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Data and large artifacts (keep scripts, configs, metadata)
+data/*.csv
+data/*.parquet
+data/*.pt
+data/*.tar.gz
+!data/metadata.json
+
+# Predictions and logs
+submissions/
+logs/
+*.log
+
+# Checkpoints
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
