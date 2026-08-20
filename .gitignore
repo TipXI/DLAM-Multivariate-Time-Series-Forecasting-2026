@@ -19,13 +19,15 @@ data/*.tar.gz
 # Predictions and logs
 submissions/
 logs/
+catboost_info/
+*.zip
 *.log
 
 # Checkpoints
 checkpoints/
-*.pt
-*.pth
-*.ckpt
+.pt
+.pth
+.ckpt
 
 # IDE / OS
 .vscode/
