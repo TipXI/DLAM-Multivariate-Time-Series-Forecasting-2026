@@ -1,0 +1,11 @@
+Model,WAPE,MAE,MSE,RMSE,sMAPE(%)
+Naive Last-Value Baseline,0.545,5.821,57.034,7.552,65.73
+Weekly Lag (168h),0.4549,4.858,40.462,6.361,54.43
+Daily Lag (24h),0.418,4.465,34.636,5.885,49.5
+DLinear (Deep Univariate Linear),0.4202,4.488,35.466,5.955,48.37
+Seasonal Mean Baseline,0.314,3.354,20.641,4.543,34.7
+TiDE (Time-series Dense Encoder),0.3054,3.262,20.358,4.512,33.95
+PyTorch DeepOperationsNet,0.1476,1.577,8.949,2.992,16.54
+CatBoost (Categorical Series ID),0.145,1.549,8.785,2.964,16.08
+LightGBM (Multi-Scale Rolling),0.1445,1.543,8.741,2.956,16.08
+Grand Master Ensemble (Tri-Model),0.1434,1.532,8.65,2.941,15.95
