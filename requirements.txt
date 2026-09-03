@@ -1,0 +1,15 @@
+# Deep Learning and Scientific Computing
+torch>=2.2.0
+numpy>=1.26.0
+pandas>=2.2.0
+scipy>=1.12.0
+scikit-learn>=1.4.0
+
+# Gradient Boosting Suite
+lightgbm>=4.3.0
+catboost>=1.2.0
+xgboost>=2.0.0
+
+# Utilities and Benchmarking
+huggingface_hub>=0.20.0
+pypdf>=4.0.0
