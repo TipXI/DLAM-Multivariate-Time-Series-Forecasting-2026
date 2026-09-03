@@ -21,7 +21,7 @@
 \maketitle
 
 \begin{abstract}
-Multivariate time series forecasting in complex operational networks requires modeling non-linear interactions across correlated exogenous signals, accommodating unit-level heterogeneity, and remaining robust under missing covariate values over extended rollout horizons. In this work, we develop an end-to-end deep learning forecasting and consensus ensembling framework for predicting the future 336-hour operational load index across 96 industrial units. Our architecture couples a PyTorch Deep Operations ResNet with learned entity embeddings, multi-scale forward rolling cumulative pressure representations, and missingness indicator masks, trained directly with an $\ell_1$ objective aligned with the Weighted Absolute Percentage Error (WAPE) leaderboard metric. Evaluated on the official public Hugging Face validation benchmark against hidden labels, our winning model achieves a validation WAPE of \textbf{14.33\%} (MAE \textbf{1.5779}, Rank \#87), reducing error by $>3.3\times$ compared to the official naive baseline (\textbf{48.10\%}) and $>2.4\times$ compared to the seasonal mean baseline (\textbf{34.41\%}). Furthermore, we provide distribution-free uncertainty quantification via split conformal prediction, conduct systematic ablation studies, and evaluate domain transferability on an external cryptocurrency trading volume benchmark.
+Multivariate time series forecasting in complex operational networks requires modeling non-linear interactions across correlated exogenous signals, accommodating unit-level heterogeneity, and remaining robust under missing covariate values over extended rollout horizons. In this work, we develop an end-to-end deep learning forecasting and consensus ensembling framework for predicting the future 336-hour operational load index across 96 industrial units. Our architecture couples a PyTorch Deep Operations ResNet with learned entity embeddings, multi-scale forward rolling cumulative pressure representations, and missingness indicator masks, trained directly with an $\ell_1$ objective aligned with the Weighted Absolute Percentage Error (WAPE) leaderboard metric. Evaluated on the official public Hugging Face validation benchmark against hidden labels, our winning model achieves a validation WAPE of \textbf{14.33\%} (MAE \textbf{1.5779}), reducing error by $>3.3\times$ compared to the official naive baseline (\textbf{48.10\%}) and $>2.4\times$ compared to the seasonal mean baseline (\textbf{34.41\%}). Furthermore, we provide distribution-free uncertainty quantification via split conformal prediction, conduct systematic ablation studies, and evaluate domain transferability on an external cryptocurrency trading volume benchmark.
 \end{abstract}
 
 \section{Introduction}
@@ -155,7 +155,7 @@ Grand Master (\texttt{grand\_master\_v3}) & 1.5792 & 9.3261 & 3.0539 & 18.41 & 1
 \end{tabular}
 \end{table}
 
-As shown in Table~\ref{tab:main_results}, our winning model (\texttt{ensemble\_v2}) achieved **Rank \#87** with a WAPE of **14.33\%**, substantially outperforming the required naive baseline ($48.10\%$) and seasonal mean baseline ($34.41\%$).
+As shown in Table~\ref{tab:main_results}, our winning model (\texttt{ensemble\_v2}) achieved a validation WAPE of \textbf{14.33\%} (MAE \textbf{1.5779}), substantially outperforming the required naive baseline ($48.10\%$) and seasonal mean baseline ($34.41\%$).
 
 \subsection{Ablation Studies}
 
@@ -240,7 +240,7 @@ Our PyTorch DeepNet & 0.0426 & 2.521 & 3.192 & 4.85 \\
 \paragraph{Domain Transfer Analysis:} In financial volume forecasting, future exogenous operational drivers do not exist (covariate-free regime), leaving trading volume governed primarily by periodic diurnal seasonality. In this setting, statistical seasonal baselines are highly competitive. This reveals that the primary competitive advantage of deep architectures emerges when rich multivariate forward covariates and non-linear physical interactions are present.
 
 \section{Conclusion}
-We presented an end-to-end deep learning forecasting system for multivariate operations load prediction. By pairing future operational estimates with missingness-robust indicators, multi-scale rolling temporal features, and an aligned $\ell_1$ loss, our consensus ensemble achieved a validation WAPE of \textbf{14.33\%} (Rank \#87), outperforming all baselines. We paired point forecasts with distribution-free conformal prediction intervals and provided rigorous ablation evidence to support each design choice.
+We presented an end-to-end deep learning forecasting system for multivariate operations load prediction. By pairing future operational estimates with missingness-robust indicators, multi-scale rolling temporal features, and an aligned $\ell_1$ loss, our consensus ensemble achieved a validation WAPE of \textbf{14.33\%}, outperforming all baselines. We paired point forecasts with distribution-free conformal prediction intervals and provided rigorous ablation evidence to support each design choice.
 
 \section*{Group Contributions}
 \begin{itemize}

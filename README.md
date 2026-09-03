@@ -29,18 +29,18 @@ The goal is to forecast the future **336-hour (14-day)** operational load index 
 
 The table below reports the **exact scores from the official Hugging Face public validation leaderboard** (scored automatically against hidden validation labels) along with the corresponding generated CSV files in `submissions/`:
 
-| Leaderboard Rank | Model / Baseline | Generated CSV File | MAE $\downarrow$ | MSE $\downarrow$ | RMSE $\downarrow$ | MAPE (\%) $\downarrow$ | sMAPE (\%) $\downarrow$ | WAPE (\%) $\downarrow$ |
-| :---: | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **#406** | `naive_last_value` | `submissions/baselines/naive_last_value.csv` | `5.2945` | `48.6110` | `6.9722` | `61.35` | `52.71` | **`48.10`** |
-| **#403** | `lag24_repeat` | `submissions/baselines/lag24_repeat.csv` | `5.1539` | `43.5946` | `6.6026` | `78.51` | `47.31` | **`46.82`** |
-| **#399** | `lag168_repeat` | `submissions/baselines/lag168_repeat.csv` | `5.1405` | `45.1725` | `6.7210` | `71.87` | `47.28` | **`46.70`** |
-| **#369** | `seasonal_mean` | `submissions/baselines/seasonal_mean.csv` | `3.7876` | `27.1029` | `5.2060` | `45.68` | `37.43` | **`34.41`** |
-| **#254** | `tide_v1` (TiDE) | `submissions/tide.csv` | `3.6939` | `26.8609` | `5.1828` | `40.34` | `37.33` | **`33.56`** |
-| **#122** | `ensemble_v1` | `submissions/ensemble_v1.csv` | `1.6823` | `9.5873` | `3.0963` | `19.82` | `16.97` | **`15.28`** |
-| **#87** | **Winning Model (`ensemble_v2`)** | `submissions/ensemble_v2.csv` | **`1.5779`** | **`9.3050`** | **`3.0504`** | **`18.51`** | **`15.88`** | **`14.33`** |
-| **#87** | `grand_master_v3` | `submissions/grand_master_v3.csv` | `1.5792` | `9.3261` | `3.0539` | `18.41` | `15.84` | **`14.35`** |
+| Model / Baseline | Source | Generated CSV File | MAE $\downarrow$ | MSE $\downarrow$ | RMSE $\downarrow$ | MAPE (\%) $\downarrow$ | sMAPE (\%) $\downarrow$ | WAPE (\%) $\downarrow$ |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| `naive_last_value` | Official Lecturer Baseline | `submissions/baselines/naive_last_value.csv` | `5.2945` | `48.6110` | `6.9722` | `61.35` | `52.71` | **`48.10`** |
+| `lag24_repeat` | Official Lecturer Baseline | `submissions/baselines/lag24_repeat.csv` | `5.1539` | `43.5946` | `6.6026` | `78.51` | `47.31` | **`46.82`** |
+| `lag168_repeat` | Official Lecturer Baseline | `submissions/baselines/lag168_repeat.csv` | `5.1405` | `45.1725` | `6.7210` | `71.87` | `47.28` | **`46.70`** |
+| `seasonal_mean` | Official Lecturer Baseline | `submissions/baselines/seasonal_mean.csv` | `3.7876` | `27.1029` | `5.2060` | `45.68` | `37.43` | **`34.41`** |
+| `tide_v1` (TiDE) | Group 23 Model | `submissions/tide.csv` | `3.6939` | `26.8609` | `5.1828` | `40.34` | `37.33` | **`33.56`** |
+| `ensemble_v1` | Group 23 Model | `submissions/ensemble_v1.csv` | `1.6823` | `9.5873` | `3.0963` | `19.82` | `16.97` | **`15.28`** |
+| **Winning Model (`ensemble_v2`)** | **Group 23 Model** | `submissions/ensemble_v2.csv` | **`1.5779`** | **`9.3050`** | **`3.0504`** | **`18.51`** | **`15.88`** | **`14.33`** |
+| `grand_master_v3` | Group 23 Model | `submissions/grand_master_v3.csv` | `1.5792` | `9.3261` | `3.0539` | `18.41` | `15.84` | **`14.35`** |
 
-> **Key Takeaway:** Our winning model (`ensemble_v2`) achieves a **$>3.3\times$ error reduction** over the official naive baseline (`48.10%`) and a **$>2.4\times$ error reduction** over the official seasonal mean baseline (`34.41%`), ranking **#87** on the public leaderboard.
+> **Key Takeaway:** Our winning model (`ensemble_v2`) achieves a **$>3.3\times$ error reduction** over the official naive baseline (`48.10%`) and a **$>2.4\times$ error reduction** over the official seasonal mean baseline (`34.41%`).
 
 ---
 

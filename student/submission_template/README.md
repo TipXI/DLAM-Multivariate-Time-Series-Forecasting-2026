@@ -3,7 +3,7 @@
 **Course:** Deep Learning (SS26), Technical University of Darmstadt  
 **Leaderboard Group:** Grex XXIII (Group ID: 23)  
 **Winning Model Name:** `nuhhh_v2`  
-**Public Validation Leaderboard Score:** **14.33% WAPE** (Rank #87)  
+**Public Validation Leaderboard Score:** **14.33% WAPE**  
 **GitHub Repository:** [https://github.com/TipXI/DLAM-Multivariate-Time-Series-Forecasting-2026](https://github.com/TipXI/DLAM-Multivariate-Time-Series-Forecasting-2026)  
 
 ---
