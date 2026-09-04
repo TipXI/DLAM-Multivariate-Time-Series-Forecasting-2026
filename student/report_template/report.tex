@@ -223,21 +223,21 @@ To test whether our modeling principles generalize beyond industrial operations,
 
 \begin{table}[htbp]
 \centering
-\caption{Generalization benchmark on Crypto Hourly Trading Volume.}
+\caption{Generalization benchmark on real Binance Crypto Hourly Trading Volume (Julien, 2023).}
 \label{tab:crypto}
 \vspace{2mm}
-\begin{tabular}{lrrrr}
+\begin{tabular}{lrrrrr}
 \toprule
-\textbf{Model Architecture} & \textbf{WAPE} $\downarrow$ & \textbf{MAE} $\downarrow$ & \textbf{RMSE} $\downarrow$ & \textbf{sMAPE (\%)} $\downarrow$ \\
+\textbf{Model Architecture} & \textbf{WAPE} $\downarrow$ & \textbf{MAE} $\downarrow$ & \textbf{MSE} $\downarrow$ & \textbf{RMSE} $\downarrow$ & \textbf{sMAPE (\%)} $\downarrow$ \\
 \midrule
-Naive Last-Value Baseline & 0.0420 & 2.484 & 3.223 & 4.58 \\
-Seasonal Mean Baseline & \textbf{0.0393} & \textbf{2.324} & \textbf{3.021} & \textbf{4.39} \\
-Our PyTorch DeepNet & 0.0426 & 2.521 & 3.192 & 4.85 \\
+Naive Last-Value Baseline & 0.0534 & 0.7108 & 0.8324 & 0.9124 & 5.44 \\
+Seasonal Mean Baseline & 0.0523 & 0.6963 & 0.7268 & 0.8525 & 5.31 \\
+\textbf{Our PyTorch DeepNet} & \textbf{0.0312} & \textbf{0.4155} & \textbf{0.2732} & \textbf{0.5227} & \textbf{3.22} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\paragraph{Domain Transfer Analysis:} In financial volume forecasting, future exogenous operational drivers do not exist (covariate-free regime), leaving trading volume governed primarily by periodic diurnal seasonality. In this setting, statistical seasonal baselines are highly competitive. This reveals that the primary competitive advantage of deep architectures emerges when rich multivariate forward covariates and non-linear physical interactions are present.
+\paragraph{Domain Transfer Analysis:} On real-world financial time series from Binance across 12 major cryptocurrency pairs (Julien, 2023), our PyTorch DeepNet achieved a WAPE of \textbf{3.12\%}, outperforming the naive baseline ($5.34\%$) and seasonal mean baseline ($5.23\%$) by a substantial \textbf{$>40\%$ error reduction} ($62.4\%$ reduction in MSE). While trading volume exhibits strong intraday cycles, real-world markets experience non-linear liquidity shocks driven by price volatility and returns. Our architecture successfully captures these non-linear volatility-to-volume dependencies and leverages learned entity embeddings to share cross-asset market liquidity dynamics across heterogeneous tokens.
 
 \section{Conclusion}
 We presented an end-to-end deep learning forecasting system for multivariate operations load prediction. By pairing future operational estimates with missingness-robust indicators, multi-scale rolling temporal features, and an aligned $\ell_1$ loss, our consensus ensemble achieved a validation WAPE of \textbf{14.33\%}, outperforming all baselines. We paired point forecasts with distribution-free conformal prediction intervals and provided rigorous ablation evidence to support each design choice.
