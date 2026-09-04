@@ -2,8 +2,8 @@
 
 **Course:** Deep Learning (SS26), Technical University of Darmstadt  
 **Leaderboard Group:** Grex XXIII (Group ID: 23)  
-**Winning Model Name:** `nuhhh_v2`  
-**Public Validation Leaderboard Score:** **14.33% WAPE**  
+**Winning Model Name:** `nuhhh_v5`  
+**Public Validation Leaderboard Score:** **14.30% WAPE** (14.298% WAPE, MAE 1.5739)  
 **GitHub Repository:** [https://github.com/TipXI/DLAM-Multivariate-Time-Series-Forecasting-2026](https://github.com/TipXI/DLAM-Multivariate-Time-Series-Forecasting-2026)  
 
 ---
@@ -71,4 +71,4 @@ To reproduce full model training from scratch using the raw benchmark dataset:
    ```bash
    python scripts/train_top_ensemble.py
    ```
-   This generates `submissions/ensemble_v2.csv` (our winning submission achieving **14.33% WAPE** on the public leaderboard).
+   This generates `submissions/predictions.csv` (our winning submission achieving **14.30% WAPE** on the public leaderboard).

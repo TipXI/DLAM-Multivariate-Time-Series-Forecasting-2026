@@ -37,10 +37,11 @@ The table below reports the **exact scores from the official Hugging Face public
 | `seasonal_mean` | Official Lecturer Baseline | `submissions/baselines/seasonal_mean.csv` | `3.7876` | `27.1029` | `5.2060` | `45.68` | `37.43` | **`34.41`** |
 | `tide_v1` (TiDE) | Group 23 Model | `submissions/tide.csv` | `3.6939` | `26.8609` | `5.1828` | `40.34` | `37.33` | **`33.56`** |
 | `ensemble_v1` | Group 23 Model | `submissions/ensemble_v1.csv` | `1.6823` | `9.5873` | `3.0963` | `19.82` | `16.97` | **`15.28`** |
-| **Winning Model (`ensemble_v2`)** | **Group 23 Model** | `submissions/ensemble_v2.csv` | **`1.5779`** | **`9.3050`** | **`3.0504`** | **`18.51`** | **`15.88`** | **`14.33`** |
+| `ensemble_v2` (`nuhhh_v2`) | Group 23 Model | `submissions/ensemble_v2.csv` | `1.5779` | **`9.3050`** | **`3.0504`** | `18.51` | `15.88` | **`14.33`** |
 | `grand_master_v3` | Group 23 Model | `submissions/grand_master_v3.csv` | `1.5792` | `9.3261` | `3.0539` | `18.41` | `15.84` | **`14.35`** |
+| **Winning Model (`nuhhh_v5`)** | **Group 23 Model** | `submissions/predictions.csv` | **`1.5739`** | `9.3137` | `3.0518` | **`18.35`** | **`15.81`** | **`14.30`** |
 
-> **Key Takeaway:** Our winning model (`ensemble_v2`) achieves a **$>3.3\times$ error reduction** over the official naive baseline (`48.10%`) and a **$>2.4\times$ error reduction** over the official seasonal mean baseline (`34.41%`).
+> **Key Takeaway:** Our winning model (`nuhhh_v5`) achieves a **$>3.3\times$ error reduction** over the official naive baseline (`48.10%`) and a **$>2.4\times$ error reduction** over the official seasonal mean baseline (`34.41%`), setting our top score of **14.30% WAPE** (14.298% WAPE, MAE `1.5739`).
 
 ---
 
@@ -78,7 +79,8 @@ The table below reports the **exact scores from the official Hugging Face public
 │
 ├── submissions/                      # Generated submission prediction CSVs
 │   ├── baselines/                    # naive_last_value, seasonal_mean, lag24, lag168
-│   ├── ensemble_v2.csv               # Winning leaderboard submission (14.33% WAPE)
+│   ├── predictions.csv               # Top winning leaderboard submission nuhhh_v5 (14.30% WAPE)
+│   ├── ensemble_v2.csv               # Winning leaderboard submission nuhhh_v2 (14.33% WAPE)
 │   ├── ensemble_v1.csv               # Initial ensemble submission (15.28% WAPE)
 │   ├── tide.csv                      # TiDE standalone submission (33.56% WAPE)
 │   └── dlinear.csv                   # DLinear standalone submission
@@ -110,7 +112,7 @@ pip install -r requirements.txt
 
 ## Fast Inference Quickstart (Skip Training in < 3s)
 
-If you wish to generate predictions immediately without training models from scratch, you can run inference directly using our pre-trained checkpoint to reproduce our winning leaderboard submission (`ensemble_v2.csv`, **14.33% WAPE**):
+If you wish to generate predictions immediately without training models from scratch, you can run inference directly using our pre-trained checkpoint to reproduce our top winning leaderboard submission (`nuhhh_v5`, **14.30% WAPE** / 14.298%):
 
 ```bash
 # 1. Download benchmark input data (~5s)
@@ -122,7 +124,7 @@ python student/submission_template/predict.py \
   --output_file submissions/predictions.csv \
   --checkpoint student/submission_template/checkpoint.pt
 ```
-*This produces `submissions/predictions.csv` with all 32,256 required rows, 0 nulls, exactly matching our winning 14.33% WAPE leaderboard submission.*
+*This produces `submissions/predictions.csv` with all 32,256 required rows, 0 nulls, exactly matching our top winning 14.30% WAPE leaderboard submission.*
 
 ---
 

@@ -21,7 +21,7 @@
 \maketitle
 
 \begin{abstract}
-Multivariate time series forecasting in complex operational networks requires modeling non-linear interactions across correlated exogenous signals, accommodating unit-level heterogeneity, and remaining robust under missing covariate values over extended rollout horizons. In this work, we develop an end-to-end deep learning forecasting and consensus ensembling framework for predicting the future 336-hour operational load index across 96 industrial units. Our architecture couples a PyTorch Deep Operations ResNet with learned entity embeddings, multi-scale forward rolling cumulative pressure representations, and missingness indicator masks, trained directly with an $\ell_1$ objective aligned with the Weighted Absolute Percentage Error (WAPE) leaderboard metric. Evaluated on the official public Hugging Face validation benchmark against hidden labels, our winning model achieves a validation WAPE of \textbf{14.33\%} (MAE \textbf{1.5779}), reducing error by $>3.3\times$ compared to the official naive baseline (\textbf{48.10\%}) and $>2.4\times$ compared to the seasonal mean baseline (\textbf{34.41\%}). Furthermore, we provide distribution-free uncertainty quantification via split conformal prediction, conduct systematic ablation studies, and evaluate domain transferability on an external cryptocurrency trading volume benchmark.
+Multivariate time series forecasting in complex operational networks requires modeling non-linear interactions across correlated exogenous signals, accommodating unit-level heterogeneity, and remaining robust under missing covariate values over extended rollout horizons. In this work, we develop an end-to-end deep learning forecasting and consensus ensembling framework for predicting the future 336-hour operational load index across 96 industrial units. Our architecture couples a PyTorch Deep Operations ResNet with learned entity embeddings, multi-scale forward rolling cumulative pressure representations, and missingness indicator masks, trained directly with an $\ell_1$ objective aligned with the Weighted Absolute Percentage Error (WAPE) leaderboard metric. Evaluated on the official public Hugging Face validation benchmark against hidden labels, our winning model achieves a validation WAPE of \textbf{14.30\%} (MAE \textbf{1.5739}), reducing error by $>3.3\times$ compared to the official naive baseline (\textbf{48.10\%}) and $>2.4\times$ compared to the seasonal mean baseline (\textbf{34.41\%}). Furthermore, we provide distribution-free uncertainty quantification via split conformal prediction, conduct systematic ablation studies, and evaluate domain transferability on an external cryptocurrency trading volume benchmark.
 \end{abstract}
 
 \section{Introduction}
@@ -150,14 +150,15 @@ Table~\ref{tab:main_results} displays the exact scores computed automatically on
 \multicolumn{7}{l}{\textit{Our Submitted Models:}} \\
 TiDE (\texttt{tide\_v1}) & 3.6939 & 26.8609 & 5.1828 & 40.34 & 37.33 & 33.56 \\
 DeepNet+GBM (\texttt{ensemble\_v1}) & 1.6823 & 9.5873 & 3.0963 & 19.82 & 16.97 & 15.28 \\
-\textbf{Winning Model (\texttt{ensemble\_v2})} & \textbf{1.5779} & \textbf{9.3050} & \textbf{3.0504} & \textbf{18.51} & \textbf{15.88} & \textbf{14.33} \\
+Ensemble v2 (\texttt{ensemble\_v2}) & 1.5779 & \textbf{9.3050} & \textbf{3.0504} & 18.51 & 15.88 & 14.33 \\
 Grand Master (\texttt{grand\_master\_v3}) & 1.5792 & 9.3261 & 3.0539 & 18.41 & 15.84 & 14.35 \\
+\textbf{Winning Model (\texttt{nuhhh\_v5})} & \textbf{1.5739} & 9.3137 & 3.0518 & \textbf{18.35} & \textbf{15.81} & \textbf{14.30} \\
 \bottomrule
 \end{tabular}%
 }
 \end{table}
 
-As shown in Table~\ref{tab:main_results}, our winning model (\texttt{ensemble\_v2}) achieved a validation WAPE of \textbf{14.33\%} (MAE \textbf{1.5779}), substantially outperforming the required naive baseline ($48.10\%$) and seasonal mean baseline ($34.41\%$).
+As shown in Table~\ref{tab:main_results}, our winning model (\texttt{nuhhh\_v5}) achieved a validation WAPE of \textbf{14.30\%} (MAE \textbf{1.5739}), substantially outperforming the required naive baseline ($48.10\%$) and seasonal mean baseline ($34.41\%$).
 
 \subsection{Ablation Studies}
 
@@ -246,7 +247,7 @@ Seasonal Mean Baseline & 0.0523 & 0.6963 & 0.7268 & 0.8525 & 5.31 \\
 \paragraph{Domain Transfer Analysis:} On real-world financial time series from Binance across 12 major cryptocurrency pairs (Julien, 2023), our PyTorch DeepNet achieved a WAPE of \textbf{3.12\%}, outperforming the naive baseline ($5.34\%$) and seasonal mean baseline ($5.23\%$) by a substantial \textbf{$>40\%$ error reduction} ($62.4\%$ reduction in MSE). While trading volume exhibits strong intraday cycles, real-world markets experience non-linear liquidity shocks driven by price volatility and returns. Our architecture successfully captures these non-linear volatility-to-volume dependencies and leverages learned entity embeddings to share cross-asset market liquidity dynamics across heterogeneous tokens.
 
 \section{Conclusion}
-We presented an end-to-end deep learning forecasting system for multivariate operations load prediction. By pairing future operational estimates with missingness-robust indicators, multi-scale rolling temporal features, and an aligned $\ell_1$ loss, our consensus ensemble achieved a validation WAPE of \textbf{14.33\%}, outperforming all baselines. We paired point forecasts with distribution-free conformal prediction intervals and provided rigorous ablation evidence to support each design choice.
+We presented an end-to-end deep learning forecasting system for multivariate operations load prediction. By pairing future operational estimates with missingness-robust indicators, multi-scale rolling temporal features, and an aligned $\ell_1$ loss, our consensus ensemble achieved a validation WAPE of \textbf{14.30\%} (MAE \textbf{1.5739}), outperforming all baselines. We paired point forecasts with distribution-free conformal prediction intervals and provided rigorous ablation evidence to support each design choice.
 
 \section*{Group Contributions}
 \begin{itemize}
