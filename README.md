@@ -108,9 +108,25 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Fast Inference Quickstart (Skip Training in < 1s)
+
+If you wish to generate predictions immediately without training models from scratch, you can run inference directly using our pre-trained PyTorch checkpoint:
+
+```bash
+# 1. Download benchmark input data (~5s)
+python scripts/download_data.py
+
+# 2. Run instant inference from pre-trained checkpoint (~0.8s)
+python student/submission_template/predict.py \
+  --input_dir data \
+  --output_file submissions/predictions.csv \
+  --checkpoint student/submission_template/checkpoint.pt
+```
+*This produces `submissions/predictions.csv` with all 32,256 required rows, 0 nulls, matching the official competition schema.*
+
 ---
 
-## Reproduction Guide (Step-by-Step)
+## Full Reproduction Guide (Training from Scratch)
 
 ### Step 1: Download Benchmark Data
 Acquires `train.csv`, `validation_input.csv`, `forecast_index_validation.csv`, and `metadata.json` from the official Hugging Face repository:
