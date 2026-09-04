@@ -136,6 +136,7 @@ Table~\ref{tab:main_results} displays the exact scores computed automatically on
 \caption{Official Hugging Face public validation leaderboard results across all baselines and models (lower is better for all metrics).}
 \label{tab:main_results}
 \vspace{2mm}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{lrrrrrr}
 \toprule
 \textbf{Model Description} & \textbf{MAE} $\downarrow$ & \textbf{MSE} $\downarrow$ & \textbf{RMSE} $\downarrow$ & \textbf{MAPE (\%)} $\downarrow$ & \textbf{sMAPE (\%)} $\downarrow$ & \textbf{WAPE (\%)} $\downarrow$ \\
@@ -152,7 +153,8 @@ DeepNet+GBM (\texttt{ensemble\_v1}) & 1.6823 & 9.5873 & 3.0963 & 19.82 & 16.97 &
 \textbf{Winning Model (\texttt{ensemble\_v2})} & \textbf{1.5779} & \textbf{9.3050} & \textbf{3.0504} & \textbf{18.51} & \textbf{15.88} & \textbf{14.33} \\
 Grand Master (\texttt{grand\_master\_v3}) & 1.5792 & 9.3261 & 3.0539 & 18.41 & 15.84 & 14.35 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 As shown in Table~\ref{tab:main_results}, our winning model (\texttt{ensemble\_v2}) achieved a validation WAPE of \textbf{14.33\%} (MAE \textbf{1.5779}), substantially outperforming the required naive baseline ($48.10\%$) and seasonal mean baseline ($34.41\%$).
@@ -205,6 +207,7 @@ Table~\ref{tab:conformal} shows empirical coverage results for Split Conformal P
 \caption{Split conformal prediction empirical coverage on held-out test data.}
 \label{tab:conformal}
 \vspace{2mm}
+\resizebox{0.95\linewidth}{!}{%
 \begin{tabular}{rrrr}
 \toprule
 \textbf{Nominal Confidence} & \textbf{Empirical Coverage} & \textbf{Calibrated Quantile ($q$)} & \textbf{Avg Interval Width} \\
@@ -213,7 +216,8 @@ Table~\ref{tab:conformal} shows empirical coverage results for Split Conformal P
 90.0\% & 90.19\% & 10.329 & 20.658 \\
 95.0\% & 94.57\% & 12.403 & 24.807 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 The empirical coverage matches the nominal confidence bounds, confirming that our model produces trustworthy prediction intervals without distributional assumptions.
@@ -226,6 +230,7 @@ To test whether our modeling principles generalize beyond industrial operations,
 \caption{Generalization benchmark on real Binance Crypto Hourly Trading Volume (Julien, 2023).}
 \label{tab:crypto}
 \vspace{2mm}
+\resizebox{0.95\linewidth}{!}{%
 \begin{tabular}{lrrrrr}
 \toprule
 \textbf{Model Architecture} & \textbf{WAPE} $\downarrow$ & \textbf{MAE} $\downarrow$ & \textbf{MSE} $\downarrow$ & \textbf{RMSE} $\downarrow$ & \textbf{sMAPE (\%)} $\downarrow$ \\
@@ -234,7 +239,8 @@ Naive Last-Value Baseline & 0.0534 & 0.7108 & 0.8324 & 0.9124 & 5.44 \\
 Seasonal Mean Baseline & 0.0523 & 0.6963 & 0.7268 & 0.8525 & 5.31 \\
 \textbf{Our PyTorch DeepNet} & \textbf{0.0312} & \textbf{0.4155} & \textbf{0.2732} & \textbf{0.5227} & \textbf{3.22} \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 \paragraph{Domain Transfer Analysis:} On real-world financial time series from Binance across 12 major cryptocurrency pairs (Julien, 2023), our PyTorch DeepNet achieved a WAPE of \textbf{3.12\%}, outperforming the naive baseline ($5.34\%$) and seasonal mean baseline ($5.23\%$) by a substantial \textbf{$>40\%$ error reduction} ($62.4\%$ reduction in MSE). While trading volume exhibits strong intraday cycles, real-world markets experience non-linear liquidity shocks driven by price volatility and returns. Our architecture successfully captures these non-linear volatility-to-volume dependencies and leverages learned entity embeddings to share cross-asset market liquidity dynamics across heterogeneous tokens.

@@ -34,7 +34,7 @@ class ForecastModel(nn.Module):
 
     def __init__(
         self,
-        num_continuous_features: int = 40,
+        num_continuous_features: int = 65,
         num_series: int = 96,
         embedding_dim: int = 32,
         hidden_dim: int = 256,

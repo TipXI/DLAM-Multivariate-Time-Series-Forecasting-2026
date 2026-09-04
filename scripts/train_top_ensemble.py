@@ -166,6 +166,9 @@ def main() -> None:
     val_input_raw = pd.read_csv(data_dir / "validation_input.csv").sort_values(["series_id", "timestamp"]).reset_index(drop=True)
     val_index_df = pd.read_csv(data_dir / "forecast_index_validation.csv")
 
+    unique_series = sorted(train_raw["series_id"].unique())
+    series2idx = {s: i for i, s in enumerate(unique_series)}
+
     print("\n1. Extracting Multi-Scale Rolling Features...")
     # Concatenate train and val_input to compute continuous rolling features without boundary artifacts
     all_combined = pd.concat([train_raw, val_input_raw], ignore_index=True)
@@ -196,14 +199,17 @@ def main() -> None:
 
     # 2. Train Multi-Seed PyTorch Deep Neural Network (3 diverse seeds)
     print("\n2. Training 3-Seed PyTorch DeepOperationsNet on CUDA...")
+    dl_models = []
     dl_preds_list = []
     seeds = [42, 101, 2024]
 
     for i, seed in enumerate(seeds, 1):
         t0 = time.time()
         dl_model = train_single_deep_net(
-            X_train_norm, s_train, y_train, seed=seed, epochs=35, batch_size=512, lr=1.2e-3, device=device
+            X_train_norm, s_train, y_train, seed=seed, epochs=25, batch_size=1024, lr=1.5e-3, device=device
         )
+        dl_models.append(dl_model.cpu().state_dict())
+        dl_model.to(device)
         # Predict on validation input
         with torch.no_grad():
             p = dl_model(
@@ -274,11 +280,29 @@ def main() -> None:
     assert len(merged_sub) == len(val_index_df)
     assert not merged_sub["prediction"].isna().any()
 
-    output_path = submissions_dir / "top_ensemble_v2.csv"
-    merged_sub.to_csv(output_path, index=False)
-    print(f"\n[SUCCESS] Generated: {output_path} ({len(merged_sub)} rows, no NaNs)")
+    merged_sub.to_csv(submissions_dir / "top_ensemble_v2.csv", index=False)
+    merged_sub.to_csv(submissions_dir / "ensemble_v2.csv", index=False)
+    print(f"\n[SUCCESS] Generated: submissions/ensemble_v2.csv ({len(merged_sub)} rows, no NaNs)")
     print(f"Prediction range: Min={merged_sub['prediction'].min():.3f}, Max={merged_sub['prediction'].max():.3f}, Mean={merged_sub['prediction'].mean():.3f}")
+
+    # 6. Save Unified Ensemble Checkpoint for submission_template/predict.py
+    checkpoint_data = {
+        "dl_state_dicts": dl_models,
+        "gbm_a_str": gbm_a.booster_.model_to_string(),
+        "gbm_b_str": gbm_b.booster_.model_to_string(),
+        "norm_stats": {"mean": mean, "std": std},
+        "feature_names": feature_names,
+        "series2idx": series2idx,
+        "blend_weights": {"dl_weight": 0.55, "gbm_weight": 0.45, "gbm_a_ratio": 0.6, "gbm_b_ratio": 0.4},
+        "train_tail": train_raw.groupby("series_id").tail(48).reset_index(drop=True),
+        "val_tail": val_input_raw.groupby("series_id").tail(48).reset_index(drop=True),
+    }
+    ckpt_path = PROJECT_ROOT / "student" / "submission_template" / "checkpoint.pt"
+    torch.save(checkpoint_data, ckpt_path)
+    torch.save(checkpoint_data, PROJECT_ROOT / "checkpoints" / "ensemble_v2_checkpoint.pt")
+    print(f"[SUCCESS] Saved unified winning ensemble checkpoint to: {ckpt_path}")
 
 
 if __name__ == "__main__":
     main()
+

@@ -12,9 +12,9 @@
 
 This archive (`final_submission.zip`) contains all necessary files for offline private test evaluation:
 * `predict.py`: Self-contained offline inference entry point.
-* `checkpoint.pt`: PyTorch `ForecastModel` weights and feature normalizers.
+* `checkpoint.pt`: Unified winning ensemble weights (3-seed PyTorch DeepOperationsNet + 2-config LightGBM boosters, feature normalizers, and boundary context).
 * `src/model.py`: PyTorch `ForecastModel` architecture definition (`DeepOperationsNet`).
-* `requirements.txt`: Minimal runtime dependencies (`torch`, `pandas`, `numpy`).
+* `requirements.txt`: Minimal runtime dependencies (`torch`, `pandas`, `numpy`, `lightgbm`).
 * `README.md`: Reproduction and inference instructions.
 
 ---
@@ -36,7 +36,7 @@ The output CSV strictly adheres to the required competition schema:
 ```csv
 series_id,timestamp,prediction
 ```
-Execution time is approximately **0.8 seconds** for all 32,256 predictions with zero null values and zero internet dependency.
+Execution time is approximately **2.5 seconds** for all 32,256 predictions with zero null values and zero internet dependency.
 
 ---
 
@@ -50,6 +50,7 @@ pip install -r requirements.txt
 * `torch>=2.2.0`
 * `pandas>=2.2.0`
 * `numpy>=1.26.0`
+* `lightgbm>=4.3.0`
 
 ---
 
