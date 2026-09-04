@@ -145,7 +145,7 @@ python scripts/run_conformal_prediction.py
 ```
 *Outputs: `80% nominal -> 81.22% empirical coverage`, `90% nominal -> 90.19% empirical coverage`.*
 
-### Step 6: Run Additional Dataset Generalization (Phase 4)
+### Step 6: Run Additional Dataset Generalization
 Evaluates the PyTorch architecture on real-world Binance cryptocurrency trading volume across 12 major assets (Julien, 2023 via `kagglehub`):
 ```bash
 python scripts/run_crypto_experiment.py
@@ -155,7 +155,7 @@ python scripts/run_crypto_experiment.py
 
 ---
 
-## Phase 4: Additional Dataset Generalization Benchmark (Crypto Volume)
+## Additional Dataset Generalization Benchmark (Crypto Volume)
 
 To test domain transferability beyond industrial operations, we evaluated our PyTorch architecture on real Binance hourly trading volume data ([Julien, 2023](https://www.kaggle.com/datasets/franoisgeorgesjulien/crypto)) over a 336-hour horizon across 12 major cryptocurrency pairs:
 

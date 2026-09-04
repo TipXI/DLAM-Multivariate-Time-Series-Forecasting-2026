@@ -86,9 +86,9 @@ def main() -> None:
         verify_submission(pred_df, val_index_df, name)
         print(f"  -> Saved submission: {out_csv.relative_to(PROJECT_ROOT)}")
 
-    print("\n" + "=" * 70)
-    print("Phase 1 Complete: All baselines evaluated and validation submissions generated!")
-    print("=" * 70)
+    print("\n" + "=" * 80)
+    print("Baseline Evaluation Complete: All baselines evaluated and validation submissions generated!")
+    print("=" * 80)
 
 
 if __name__ == "__main__":

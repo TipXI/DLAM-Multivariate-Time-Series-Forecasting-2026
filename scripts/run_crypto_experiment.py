@@ -133,7 +133,7 @@ def main() -> None:
     results_dir.mkdir(parents=True, exist_ok=True)
 
     print("=" * 75)
-    print("PHASE 4 GENERALIZATION EXPERIMENT: Crypto Volume Forecasting (Julien, 2023)")
+    print("ADDITIONAL DATASET EXPERIMENT: Crypto Volume Forecasting (Julien, 2023)")
     print("=" * 75)
 
     df, data_source = load_real_kaggle_or_fallback_crypto(n_assets=12, n_timesteps=4320)
